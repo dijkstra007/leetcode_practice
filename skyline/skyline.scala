@@ -1,20 +1,20 @@
 //https://leetcode.com/problems/max-increase-to-keep-city-skyline/
 object App {
-  def maxIncreaseKeepingSkyline(grid: Array[Array[Int]]): Int = {
-    val n = grid.length
-    var new_gird = grid.clone()
+  def max(a:Int, b:Int) = if( a > b) a else b
+    def min(a:Int, b:Int) = if( a < b) a else b
+    def maxIncreaseKeepingSkyline(grid: Array[Array[Int]]): Int = {
     var sum = 0
     for( i <- grid.indices) {
       for( j <- grid.indices) {
-        var row = Array[Int]()
-        var col = Array[Int]()
+        var maxRow = 0
+        var maxCol = 0
 
         for(k <- grid.indices)
-          row = row :+ grid(i)(k)
+          maxRow = max(maxRow, grid(i)(k))
         for(k <- grid.indices)
-          col = col :+ grid(k)(j)
-
-        sum = sum + (Array(row.max, col.max).min  - grid(i)(j))
+          maxCol = max(maxCol, grid(k)(j))
+          
+        sum = sum + (min(maxCol, maxRow)  - grid(i)(j))
       }
     }
     return sum

@@ -1,1 +1,1 @@
-Leetcode praticing
+Leetcode practicing
